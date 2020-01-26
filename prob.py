@@ -2,10 +2,10 @@
 from cv2 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
-# from lib1 import perspective_transform
+
 def apply_filters(original):
     gray = cv2.imread('image9.jpg',cv2.IMREAD_GRAYSCALE)
-    blur = cv2.GaussianBlur(gray,(11,11),0) #para eliminar ruido en la imagen
+    blur = cv2.GaussianBlur(gray,(11,11),0) #para eliminar ruido en la imagen segun la documentacion, para preparar a la deteccion de bordes 
     threshold = cv2.adaptiveThreshold(blur,255,cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY,5,2) # para aislar las lineas de lo demas
     inverted_threshold = cv2.bitwise_not(threshold) # nos interesan las lineas NEGRAS, esto hace que en la imagen sean visibles como lineas blancas
     #el kernel es un tipo de slider que recorrera toda la imagen, es usado por la funcion dilate
@@ -30,7 +30,18 @@ def find_big_square(dilatation):
     return big_square
 
 def find_corners(big_square):
-    print(big_square)
+    """
+    ejemplo del contenido de big square (ndarray)
+
+    [[[ 49  35]]
+
+    [[ 46 468]]
+
+    [[553 462]]
+
+    [[554  38]]]
+
+    """
     min_x = min(big_square[:,:,0])
     max_x = max(big_square[:,:,0])
     min_y = min(big_square[:,:,1])
@@ -47,12 +58,18 @@ def draw_corners(original, corners):
         cv2.drawMarker(original, tuple(corner), (0,191,255), 0, 20, 3) # deben ser tuplas para poder dibujarlas
 
 def transform(original, corners):
-    new_size = np.float32([[0, 0], [500, 0], [0, 600], [500, 600]])
-    M = cv2.getPerspectiveTransform(corners, new_size) # genera una matriz que permitira hacer la transformacion de la ventana, teniendo los puntos como origen
-    size = np.float32([500,600])
+    new_size = np.float32([[0, 0], [700, 0], [0, 600], [700, 600]]) # puntos de las esquinas de la nueva imagen
+    M = cv2.getPerspectiveTransform(corners, new_size)
+    size = np.float32([700,600]) # dimensiones nueva imagen
     result = cv2.warpPerspective(original, M, tuple(size))
     return result
 
+def find_lines():
+    pass
+def get_numbers():
+    pass
+def recognize():
+    pass
 
 original = cv2.imread('image9.jpg')
 filtered = apply_filters(original)
@@ -60,28 +77,43 @@ big_square = find_big_square(filtered)
 corners = find_corners(big_square)
 cv2.drawContours(original , [big_square], -1, (0,255,0), 3)
 draw_corners(original,corners)
-result = transform(original, corners)
+originalT = transform(original, corners)
+filteredT = transform(filtered, corners)
 
-# cv2.imshow('le', original)
-cv2.imshow('le2', result)
+edges = cv2.Canny(filteredT,50,150, apertureSize = 3)
+minLineLength = 100
+maxLineGap = 10
+linesP = cv2.HoughLinesP(filteredT,1,np.pi/180,50, None,minLineLength,maxLineGap)
+# lines = cv2.HoughLines(result,1,np.pi/180,200)
+# lines = cv2.HoughLines(edges,1,np.pi/180,200)
+# print(lines)
+if linesP is not None:
+    for i in range(0, len(linesP)):
+        l = linesP[i][0]
+        cv2.line(originalT, (l[0], l[1]), (l[2], l[3]), (0,0,255), 3, cv2.LINE_AA)
+# for rho,theta in lines[0]:
+    # a = np.cos(theta)
+    # b = np.sin(theta)
+    # x0 = a*rho
+    # y0 = b*rho
+    # x1 = int(x0 + 1000*(-b))
+    # y1 = int(y0 + 1000*(a))
+    # x2 = int(x0 - 1000*(-b))
+    # y2 = int(y0 - 1000*(a))
+
+    # cv2.line(result,(x1,y1),(x2,y2),(0,0,255),2)
+
+# for x1,y1,x2,y2 in lines[0]:
+    # cv2.line(result,(x1,y1),(x2,y2),(0,255,0),2)
+
+cv2.imshow('original', original)
+cv2.imshow('originalT', originalT)
+cv2.imshow('transformada', filteredT)
+# cv2.imshow('filtrada', filtered)
+# cv2.imshow('edges', edges)
 cv2.waitKey(0)
 
-# cnts = cv2.findContours(dilatation, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-# cnts = cnts[0] if len(cnts) == 2 else cnts[1]
-# cnts = sorted(cnts, key=cv2.contourArea, reverse=True)
 
-# print(f"number of cnts: {len(cnts)} ")
-# for c in cnts:
-    # peri = cv2.arcLength(c, True)
-    # approx = cv2.approxPolyDP(c, 0.015 * peri, True)
-    # transformed = perspective_transform(original, approx)
-    # break
-# edges = cv2.Canny(blur,50,150,apertureSize = 3)
-# minLineLength = 100
-# maxLineGap = 10
-# lines = cv2.HoughLinesP(edges,1,np.pi/180,100,minLineLength,maxLineGap)
-# for x1,y1,x2,y2 in lines[0]:
-    # cv2.line(img,(x1,y1),(x2,y2),(0,255,0),2)
 
 # plt.imshow(inverted_threshold)
 # plt.imshow(transformed)
