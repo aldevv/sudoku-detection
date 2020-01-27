@@ -58,14 +58,34 @@ def draw_corners(original, corners):
         cv2.drawMarker(original, tuple(corner), (0,191,255), 0, 20, 3) # deben ser tuplas para poder dibujarlas
 
 def transform(original, corners):
-    new_size = np.float32([[0, 0], [700, 0], [0, 600], [700, 600]]) # puntos de las esquinas de la nueva imagen
+    x =450
+    y = 450
+    new_size = np.float32([[0, 0], [x, 0], [0, y], [x, y]]) # puntos de las esquinas de la nueva imagen
     M = cv2.getPerspectiveTransform(corners, new_size)
-    size = np.float32([700,600]) # dimensiones nueva imagen
+    size = np.float32([x,y]) # dimensiones nueva imagen
     result = cv2.warpPerspective(original, M, tuple(size))
     return result
 
-def find_lines():
-    pass
+def find_all_squares(img): #infer 81 cells from image
+    squares = []
+    side = img.shape[:1]
+    side = side[0] / 9  
+
+    for i in range(9):  #get each box and append it to squares -- 9 rows, 9 cols
+    	for j in range(9):
+    		p1 = (i*side, j*side) #top left corner of box
+    		p2 = ((i+1)*side, (j+1)*side) #bottom right corner of box
+    		squares.append((p1, p2))
+    return squares
+
+def draw_squares_to_image(in_img, rects, colour=255):
+
+	img = in_img.copy()
+	for rect in rects:
+		img = cv2.rectangle(img, tuple(int(x) for x in rect[0]), tuple(int(x) for x in rect[1]), colour)
+	return img
+
+
 def get_numbers():
     pass
 def recognize():
@@ -75,47 +95,52 @@ original = cv2.imread('image9.jpg')
 filtered = apply_filters(original)
 big_square = find_big_square(filtered)
 corners = find_corners(big_square)
-cv2.drawContours(original , [big_square], -1, (0,255,0), 3)
-draw_corners(original,corners)
+corners_image = original.copy()
+cv2.drawContours(corners_image , [big_square], -1, (0,255,0), 3) # dibuja el contorno externo
+draw_corners(corners_image,corners) # dibuja las esquinas
 originalT = transform(original, corners)
 filteredT = transform(filtered, corners)
+squares = find_all_squares(originalT)
+originalS = draw_squares_to_image(originalT,squares)
+tes = squares[0]
 
-edges = cv2.Canny(filteredT,50,150, apertureSize = 3)
-minLineLength = 100
-maxLineGap = 10
-linesP = cv2.HoughLinesP(filteredT,1,np.pi/180,50, None,minLineLength,maxLineGap)
-# lines = cv2.HoughLines(result,1,np.pi/180,200)
-# lines = cv2.HoughLines(edges,1,np.pi/180,200)
-# print(lines)
-if linesP is not None:
-    for i in range(0, len(linesP)):
-        l = linesP[i][0]
-        cv2.line(originalT, (l[0], l[1]), (l[2], l[3]), (0,0,255), 3, cv2.LINE_AA)
-# for rho,theta in lines[0]:
-    # a = np.cos(theta)
-    # b = np.sin(theta)
-    # x0 = a*rho
-    # y0 = b*rho
-    # x1 = int(x0 + 1000*(-b))
-    # y1 = int(y0 + 1000*(a))
-    # x2 = int(x0 - 1000*(-b))
-    # y2 = int(y0 - 1000*(a))
+x = [[int(a[0][0]),int(a[1][0])] for a in squares]
+y = [[int(b[0][1]),int(b[1][1])] for b in squares]
+# cv2.imshow('originalT', originalT[0:50,0:50])
 
-    # cv2.line(result,(x1,y1),(x2,y2),(0,0,255),2)
+# print("squares: ",squares )
+print("x: ",x )
+# print("y: ",y )
+cv2.imshow('subcuadros', originalS)
+for row,col in zip(x,y):
+    cv2.imshow("indiv",originalT[row[0]:row[1],col[0]:col[1]])
+    cv2.waitKey(0)
+# int(row[0]):int(col[0]),int(col[0]):int(col[1])]
 
-# for x1,y1,x2,y2 in lines[0]:
-    # cv2.line(result,(x1,y1),(x2,y2),(0,255,0),2)
+# edges = cv2.Canny(filteredT,50,150, apertureSize = 3) # experimentar con canny
 
-cv2.imshow('original', original)
-cv2.imshow('originalT', originalT)
-cv2.imshow('transformada', filteredT)
-# cv2.imshow('filtrada', filtered)
-# cv2.imshow('edges', edges)
+# minLineLength = 100
+# maxLineGap = 10
+# linesP = cv2.HoughLinesP(filteredT,1,np.pi/180,50, None,minLineLength,maxLineGap)
+
+
+# if linesP is not None:
+    # for i in range(0, len(linesP)):
+        # l = linesP[i][0]
+        # cv2.line(originalT, (l[0], l[1]), (l[2], l[3]), (0,0,255), 3, cv2.LINE_AA)
+
+# cv2.imshow('original', original)
+# cv2.waitKey(0)
+# cv2.imshow('filtro', filtered)
+# cv2.imshow('contorno y esquinas', corners_image)
+# cv2.imshow('transformada', filteredT)
+# cv2.imshow('originalT', originalT)
+cv2.imshow('subcuadros', originalS)
 cv2.waitKey(0)
+cv2.destroyAllWindows() #Close all windows
 
 
 
-# plt.imshow(inverted_threshold)
 # plt.imshow(transformed)
 # plt.show()
 
