@@ -86,8 +86,15 @@ def draw_squares_to_image(in_img, rects, colour=255):
 	return img
 
 
-def get_numbers():
-    pass
+def get_numbers(image, squares):
+    x = [[int(a[0][0]),int(a[1][0])] for a in squares]
+    y = [[int(b[0][1]),int(b[1][1])] for b in squares]
+    # cv2.imshow('originalT', originalT[0:50,0:50])
+
+    for row,col in zip(x,y):
+        cv2.imshow("indiv",image[row[0]:row[1],col[0]:col[1]])
+        cv2.waitKey(0)
+
 def recognize():
     pass
 
@@ -102,32 +109,8 @@ originalT = transform(original, corners)
 filteredT = transform(filtered, corners)
 squares = find_all_squares(originalT)
 originalS = draw_squares_to_image(originalT,squares)
-tes = squares[0]
-
-x = [[int(a[0][0]),int(a[1][0])] for a in squares]
-y = [[int(b[0][1]),int(b[1][1])] for b in squares]
-# cv2.imshow('originalT', originalT[0:50,0:50])
-
-# print("squares: ",squares )
-print("x: ",x )
-# print("y: ",y )
 cv2.imshow('subcuadros', originalS)
-for row,col in zip(x,y):
-    cv2.imshow("indiv",originalT[row[0]:row[1],col[0]:col[1]])
-    cv2.waitKey(0)
-# int(row[0]):int(col[0]),int(col[0]):int(col[1])]
-
-# edges = cv2.Canny(filteredT,50,150, apertureSize = 3) # experimentar con canny
-
-# minLineLength = 100
-# maxLineGap = 10
-# linesP = cv2.HoughLinesP(filteredT,1,np.pi/180,50, None,minLineLength,maxLineGap)
-
-
-# if linesP is not None:
-    # for i in range(0, len(linesP)):
-        # l = linesP[i][0]
-        # cv2.line(originalT, (l[0], l[1]), (l[2], l[3]), (0,0,255), 3, cv2.LINE_AA)
+get_numbers(originalT, squares)
 
 # cv2.imshow('original', original)
 # cv2.waitKey(0)
@@ -138,10 +121,22 @@ for row,col in zip(x,y):
 cv2.imshow('subcuadros', originalS)
 cv2.waitKey(0)
 cv2.destroyAllWindows() #Close all windows
+# cv2.imwrite('houghlines5.jpg',gray)
+
+#for canny and hough
+# edges = cv2.Canny(filteredT,50,150, apertureSize = 3) # experimentar con canny
+
+# minLineLength = 100
+# maxLineGap = 10
+# linesP = cv2.HoughLinesP(filteredT,1,np.pi/180,50, None,minLineLength,maxLineGap)
 
 
+# if linesP is not None:
+    # for i in range(0, len(linesP)):
+        # l = linesP[i][0]
+       # cv2.line(originalT, (l[0], l[1]), (l[2], l[3]), (0,0,255), 3, cv2.LINE_AA)
+ 
 
 # plt.imshow(transformed)
 # plt.show()
 
-# cv2.imwrite('houghlines5.jpg',gray)
