@@ -4,7 +4,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 def apply_filters(original):
-    gray = cv2.imread('image9.jpg',cv2.IMREAD_GRAYSCALE)
+    gray = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(gray,(11,11),0) #para eliminar ruido en la imagen segun la documentacion, para preparar a la deteccion de bordes 
     threshold = cv2.adaptiveThreshold(blur,255,cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY,5,2) # para aislar las lineas de lo demas
     inverted_threshold = cv2.bitwise_not(threshold) # nos interesan las lineas NEGRAS, esto hace que en la imagen sean visibles como lineas blancas
@@ -42,14 +42,42 @@ def find_corners(big_square):
     [[554  38]]]
 
     """
-    min_x = min(big_square[:,:,0])
-    max_x = max(big_square[:,:,0])
-    min_y = min(big_square[:,:,1])
-    max_y = max(big_square[:,:,1])
+
+    top_left_sum = 9999999
+    bottom_right_sum = -1
+    # encuentra los punto esquina arriba izquirda y esquina abajo derecha
+    for i in big_square:
+        add = i[0][0] + i[0][1]
+        if(add < top_left_sum):
+            top_left_sum = add
+            top_left_point = tuple(i[0])
+        if(add > bottom_right_sum):
+            bottom_right_sum = add
+            bottom_right_point = tuple(i[0])
+        
+    non_calculated_points = []
+    # ahora reunimos los puntos los cuales no conocemos su ubicacion
+    for i in big_square:
+        if(i[0][0] not in top_left_point and i[0][0] not in bottom_right_point):
+            non_calculated_points.append(list(i[0]))
+
+    # si la x es mayor en alguna de ellas implica que sera en la derecha, dado que el unico punto que queda en la derecha es esquina arriba derecha
+    # entonces ese es el punto, de lo contrario es el otro
+    if(non_calculated_points[0][0] > non_calculated_points[1][0]):
+        top_right_point = tuple(non_calculated_points[0])
+        bottom_left_point = tuple(non_calculated_points[1])
+    else:
+        top_right_point = tuple(non_calculated_points[1])
+        bottom_left_point = tuple(non_calculated_points[0])
+    
+    print("top left: ",top_left_point)
+    print("top right",top_right_point)
+    print("bottom left",bottom_left_point)
+    print("bottom right",bottom_right_point)
 
     #sabemos que la esquina superior izquierda es min_x y min_y, la esquina inferior izquierda es min_x y max_y, etc
     # corners = np.float32([(min_x,min_y), (min_x, max_y), (max_x, min_y), (max_x, max_y)])
-    corners = np.float32([(min_x,min_y), (max_x, min_y), (min_x, max_y), (max_x, max_y)])
+    corners = np.float32([top_left_point, top_right_point, bottom_left_point, bottom_right_point])
     np.array(corners)
     return corners
 
@@ -98,7 +126,7 @@ def get_numbers(image, squares):
 def recognize():
     pass
 
-original = cv2.imread('image9.jpg')
+original = cv2.imread('image2.jpg')
 filtered = apply_filters(original)
 big_square = find_big_square(filtered)
 corners = find_corners(big_square)
@@ -110,16 +138,21 @@ filteredT = transform(filtered, corners)
 squares = find_all_squares(originalT)
 originalS = draw_squares_to_image(originalT,squares)
 cv2.imshow('subcuadros', originalS)
-get_numbers(originalT, squares)
+# get_numbers(originalT, squares)
 
-# cv2.imshow('original', original)
-# cv2.waitKey(0)
-# cv2.imshow('filtro', filtered)
-# cv2.imshow('contorno y esquinas', corners_image)
-# cv2.imshow('transformada', filteredT)
-# cv2.imshow('originalT', originalT)
+cv2.imshow('original', original)
+cv2.waitKey(0)
+cv2.imshow('filtro', filtered)
+cv2.waitKey(0)
+cv2.imshow('contorno y esquinas', corners_image)
+cv2.waitKey(0)
+cv2.imshow('transformada', filteredT)
+cv2.waitKey(0)
+cv2.imshow('originalT', originalT)
+cv2.waitKey(0)
 cv2.imshow('subcuadros', originalS)
 cv2.waitKey(0)
+get_numbers(originalT, squares)
 cv2.destroyAllWindows() #Close all windows
 # cv2.imwrite('houghlines5.jpg',gray)
 
