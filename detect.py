@@ -1,7 +1,6 @@
 
 from cv2 import cv2
 import numpy as np
-from matplotlib import pyplot as plt
 
 def apply_filters(original):
     gray = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
@@ -29,6 +28,25 @@ def find_big_square(dilatation):
                  big_square = approx
     return big_square
 
+def findTopLeft(big_square):
+    top_left_sum = 9999999
+    
+    for i in big_square:
+        add = i[0][0] + i[0][1]
+        if(add < top_left_sum):
+            top_left_sum = add
+            top_left_point = tuple(i[0])
+    return top_left_point
+
+def findBottomRight(big_square):
+    bottom_right_sum = -1
+    for i in big_square:
+        add = i[0][0] + i[0][1]
+        if(add > bottom_right_sum):
+            bottom_right_sum = add
+            bottom_right_point = tuple(i[0])
+    return bottom_right_point
+
 def find_corners(big_square):
     """
     ejemplo del contenido de big square (ndarray)
@@ -43,24 +61,16 @@ def find_corners(big_square):
 
     """
 
-    top_left_sum = 9999999
-    bottom_right_sum = -1
     # encuentra los punto esquina arriba izquirda y esquina abajo derecha
-    for i in big_square:
-        add = i[0][0] + i[0][1]
-        if(add < top_left_sum):
-            top_left_sum = add
-            top_left_point = tuple(i[0])
-        if(add > bottom_right_sum):
-            bottom_right_sum = add
-            bottom_right_point = tuple(i[0])
-        
+    top_left_point = findTopLeft(big_square)
+    bottom_right_point = findBottomRight(big_square)
+    # print(np.equal(big_square[0][0], top_left_point) )
+
     non_calculated_points = []
     # ahora reunimos los puntos los cuales no conocemos su ubicacion
     for i in big_square:
-        if(i[0][0] not in top_left_point and i[0][0] not in bottom_right_point):
+        if (list(i[0]) != list(top_left_point) and list(i[0]) != list(bottom_right_point)):
             non_calculated_points.append(list(i[0]))
-
     # si la x es mayor en alguna de ellas implica que sera en la derecha, dado que el unico punto que queda en la derecha es esquina arriba derecha
     # entonces ese es el punto, de lo contrario es el otro
     if(non_calculated_points[0][0] > non_calculated_points[1][0]):
@@ -126,7 +136,7 @@ def get_numbers(image, squares):
 def recognize():
     pass
 
-original = cv2.imread('image2.jpg')
+original = cv2.imread('Image1.jpg')
 filtered = apply_filters(original)
 big_square = find_big_square(filtered)
 corners = find_corners(big_square)
@@ -137,8 +147,6 @@ originalT = transform(original, corners)
 filteredT = transform(filtered, corners)
 squares = find_all_squares(originalT)
 originalS = draw_squares_to_image(originalT,squares)
-cv2.imshow('subcuadros', originalS)
-# get_numbers(originalT, squares)
 
 cv2.imshow('original', original)
 cv2.waitKey(0)
@@ -151,8 +159,9 @@ cv2.waitKey(0)
 cv2.imshow('originalT', originalT)
 cv2.waitKey(0)
 cv2.imshow('subcuadros', originalS)
-cv2.waitKey(0)
 get_numbers(originalT, squares)
+cv2.waitKey(0)
+# get_numbers(originalT, squares) 
 cv2.destroyAllWindows() #Close all windows
 # cv2.imwrite('houghlines5.jpg',gray)
 
