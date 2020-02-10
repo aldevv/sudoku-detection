@@ -114,20 +114,28 @@ detección de números después.
 \begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=.6\linewidth]{esquinas}
-  \caption{A subfigure}
+  \caption{Transformacion}
   \label{fig:sub1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=.6\linewidth]{transformada}
-  \caption{A subfigure}
+  \caption{Esquinas encontradas}
   \label{fig:sub2}
 \end{subfigure}
-\caption{A figure with two subfigures}
+\caption{Procesamiento de imagen}
 \label{fig:test}
 \end{figure}
 
+finalmente dividimos el sudoku en sus lineas interiores  para poder conseguir
+un arreglo de subcuadros, los cuales usaremos para hacer el reconocimiento de 
+dígitos
 
+\begin{figure}[H]
+\caption{Arreglo de subcuadros}
+\centering
+\includegraphics[width=.8\textwidth]{squares}
+\end{figure}
 % \begin{figure}[h]
 % \centering
 % \caption{Esquinas de un sudoku}
