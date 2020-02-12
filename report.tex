@@ -75,7 +75,7 @@ la cual la computadora sigue como patr\'on de la siguiente manera:
 \begin{figure}[H]
 \caption{Ejemplo de im\'agenes en visi\'on artificial}
 \centering
-\includegraphics[scale=.15]{a}
+\includegraphics[scale=.20]{a}
 \end{figure}
 \begin{wrapfigure}{l}{0.4\textwidth}
 \includegraphics[width=1\linewidth]{filtro}
@@ -110,13 +110,13 @@ detecci\'on de n\'umeros despu\'es.
 \begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=.6\linewidth]{esquinas}
-  \caption{Transformaci\'on}
+  \caption{Esquinas encontradas}
   \label{fig:sub1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.6\linewidth]{transformada}
-  \caption{Esquinas encontradas}
+  \includegraphics[width=.6\linewidth]{transform}
+  \caption{Transformaci\'on}
   \label{fig:sub2}
 \end{subfigure}
 \caption{Procesamiento de imagen}
@@ -130,8 +130,30 @@ d\'igitos
 \begin{figure}[H]
 \caption{Arreglo de subcuadros}
 \centering
-\includegraphics[width=.8\textwidth]{squares}
+\includegraphics[width=.5\textwidth]{squares}
 \end{figure}
+\vspace{.5cm}
+En cada subcuadro buscamos un número y lo transformamos para que el reconocimiento
+de dígitos posterior sea mas preciso
+\vspace{.5cm}
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.3\linewidth]{square_contour}
+  \caption{Detectar número}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.3\linewidth]{square_contour_zoom}
+  \caption{Enfocar número}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Procesamiento de imagen 2}
+\label{fig:test}
+\end{figure}
+\vspace{.5cm}
 % \begin{figure}[h]
 % \centering
 % \caption{Esquinas de un sudoku}
