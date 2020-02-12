@@ -1,6 +1,7 @@
 
 from cv2 import cv2
 import numpy as np
+import random as rng
 
 def apply_filters(original):
     gray = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)
@@ -12,8 +13,22 @@ def apply_filters(original):
     dilatation = cv2.dilate(inverted_threshold,kernel) # usado para arreglar las lineas que hayan quedado desconectadas
     return dilatation
 
+def filter_squares(image):
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    blur = cv2.GaussianBlur(gray,(3,3),0) #para eliminar ruido en la imagen segun la documentacion, para preparar a la deteccion de bordes 
+    thresh = 10 # initial threshold
+    # canny_output = cv2.Canny(blur,thresh, thresh**2)
+    threshold = cv2.adaptiveThreshold(blur,255,cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY,5,2) # para aislar las lineas de lo demas
+    inverted_threshold = cv2.bitwise_not(threshold) # nos interesan las lineas NEGRAS, esto hace que en la imagen sean visibles como lineas blancas
+    return inverted_threshold
+
+def contours_numbers(inverted_threshold):
+    contours, _ = cv2.findContours(inverted_threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[-2:]
+    contours = sorted(contours, key = cv2.contourArea, reverse = True)[:10] # areas mas grandes primero
+    return contours
+
 def find_big_square(dilatation):
-    contours, hierarchy = cv2.findContours(dilatation.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[-2:]
+    contours, _ = cv2.findContours(dilatation.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[-2:]
     print(f"num contours: {len(contours)}")
     contours = sorted(contours, key = cv2.contourArea, reverse = True)[:10] # areas mas grandes primero
     big_square = None
@@ -21,31 +36,13 @@ def find_big_square(dilatation):
 
     for contour in contours:
          perimeter = cv2.arcLength(contour,True) # largo del contour
-         approx = cv2.approxPolyDP(contour, 0.02*perimeter , True) #constante 0.02
+         approx = cv2.approxPolyDP(contour, 0.02*perimeter , True) #constante 0.02 # aproxima a lineas rectas
          if len(approx) == 4:
              if perimeter > maxPerimeter: # para conseguir el contorno mas grande
                  maxPerimeter = perimeter
                  big_square = approx
     return big_square
 
-def findTopLeft(big_square):
-    top_left_sum = 9999999
-    
-    for i in big_square:
-        add = i[0][0] + i[0][1]
-        if(add < top_left_sum):
-            top_left_sum = add
-            top_left_point = tuple(i[0])
-    return top_left_point
-
-def findBottomRight(big_square):
-    bottom_right_sum = -1
-    for i in big_square:
-        add = i[0][0] + i[0][1]
-        if(add > bottom_right_sum):
-            bottom_right_sum = add
-            bottom_right_point = tuple(i[0])
-    return bottom_right_point
 
 def find_corners(big_square):
     """
@@ -59,26 +56,50 @@ def find_corners(big_square):
 
     [[554  38]]]
 
-    """
+    # """
+    def findTopLeft():
+        top_left_sum = 9999999
+        for i in big_square:
+            add = i[0][0] + i[0][1]
+            if(add < top_left_sum):
+                top_left_sum = add
+                top_left_point = tuple(i[0])
+        return top_left_point
 
+    def findBottomRight():
+        bottom_right_sum = -1
+        for i in big_square:
+            add = i[0][0] + i[0][1]
+            if(add > bottom_right_sum):
+                bottom_right_sum = add
+                bottom_right_point = tuple(i[0])
+        return bottom_right_point
+
+    def find_non_calculated_points():
     # encuentra los punto esquina arriba izquirda y esquina abajo derecha
-    top_left_point = findTopLeft(big_square)
-    bottom_right_point = findBottomRight(big_square)
-    # print(np.equal(big_square[0][0], top_left_point) )
+        non_calculated_points = []
+        # ahora reunimos los puntos los cuales no conocemos su ubicacion
+        for i in big_square:
+            if (list(i[0]) != list(top_left_point) and list(i[0]) != list(bottom_right_point)):
+                non_calculated_points.append(list(i[0]))
+        return non_calculated_points
 
-    non_calculated_points = []
-    # ahora reunimos los puntos los cuales no conocemos su ubicacion
-    for i in big_square:
-        if (list(i[0]) != list(top_left_point) and list(i[0]) != list(bottom_right_point)):
-            non_calculated_points.append(list(i[0]))
-    # si la x es mayor en alguna de ellas implica que sera en la derecha, dado que el unico punto que queda en la derecha es esquina arriba derecha
-    # entonces ese es el punto, de lo contrario es el otro
-    if(non_calculated_points[0][0] > non_calculated_points[1][0]):
-        top_right_point = tuple(non_calculated_points[0])
-        bottom_left_point = tuple(non_calculated_points[1])
-    else:
-        top_right_point = tuple(non_calculated_points[1])
-        bottom_left_point = tuple(non_calculated_points[0])
+    def find_topRight_and_bottomLeft():
+        # si la x es mayor en alguna de ellas implica que sera en la derecha, dado que el unico punto que queda en la derecha es esquina arriba derecha
+        # entonces ese es el punto, de lo contrario es el otro
+        if(non_calculated_points[0][0] > non_calculated_points[1][0]):
+            top_right_point = tuple(non_calculated_points[0])
+            bottom_left_point = tuple(non_calculated_points[1])
+        else:
+            top_right_point = tuple(non_calculated_points[1])
+            bottom_left_point = tuple(non_calculated_points[0])
+        return top_right_point, bottom_left_point
+
+    top_left_point = findTopLeft()
+    bottom_right_point = findBottomRight()
+    non_calculated_points = find_non_calculated_points() #
+    top_right_point, bottom_left_point = find_topRight_and_bottomLeft()
+
     
     print("top left: ",top_left_point)
     print("top right",top_right_point)
@@ -95,9 +116,7 @@ def draw_corners(original, corners):
     for corner in corners:
         cv2.drawMarker(original, tuple(corner), (0,191,255), 0, 20, 3) # deben ser tuplas para poder dibujarlas
 
-def transform(original, corners):
-    x =450
-    y = 450
+def transform(original, corners,x=450,y=450):
     new_size = np.float32([[0, 0], [x, 0], [0, y], [x, y]]) # puntos de las esquinas de la nueva imagen
     M = cv2.getPerspectiveTransform(corners, new_size)
     size = np.float32([x,y]) # dimensiones nueva imagen
@@ -124,19 +143,87 @@ def draw_squares_to_image(in_img, rects, colour=255):
 	return img
 
 
+def thresh_callback(val, src_gray):
+    threshold = val
+    rng.seed(12345)
+    canny_output = cv2.Canny(src_gray, threshold, threshold * 2)
+    
+    
+    contours, hierarchy = cv2.findContours(canny_output, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[-2:]
+    
+    
+    contours_poly = [None]*len(contours)
+    boundRect = [None]*len(contours)
+    centers = [None]*len(contours)
+    radius = [None]*len(contours)
+    for i, c in enumerate(contours):
+        contours_poly[i] = cv2.approxPolyDP(c, 3, True)
+        boundRect[i] = cv2.boundingRect(contours_poly[i])
+        centers[i], radius[i] = cv2.minEnclosingCircle(contours_poly[i])
+    
+    
+    drawing = np.zeros((canny_output.shape[0], canny_output.shape[1], 3), dtype=np.uint8)
+    
+    
+    for i in range(len(contours)):
+        color = (rng.randint(0,256), rng.randint(0,256), rng.randint(0,256))
+        cv2.drawContours(drawing, contours_poly, i, color)
+        cv2.rectangle(drawing, (int(boundRect[i][0]), int(boundRect[i][1])), \
+           (int(boundRect[i][0]+boundRect[i][2]), int(boundRect[i][1]+boundRect[i][3])), color, 2)
+        cv2.circle(drawing, (int(centers[i][0]), int(centers[i][1])), int(radius[i]), color, 2)
+    
+
+def zoom_number(image, cont):
+    inverted_threshold = filter_squares(image)
+    contours =  contours_numbers(inverted_threshold)
+    largest_area = 0
+    x=0
+    y=0
+    w=0
+    h=0
+    curve = 0
+    for i, c in enumerate(contours):
+        xTemp,yTemp,wTemp,hTemp = cv2.boundingRect(c)
+        if( cv2.contourArea(c) > largest_area and \
+            (hTemp < image.shape[0]*.9 and wTemp < image.shape[1]*.9)\
+                and hTemp > 10 and wTemp > 10): #limites definidos, numero no es menor a 10 ni debe
+            largest_area = cv2.contourArea(c)  # medir el 90% de la imagen 
+            curve = cv2.arcLength(c,True)
+            x,y,w,h = cv2.boundingRect(c)
+    # print("contourArea for",cont," is: ",curve,"image h:",image.shape[0],"image w:",image.shape[1])
+    # print("contour h:",h," and w: ",w)
+
+    # cv2.rectangle(image,(x,y),(x+w,y+h),(0,255,0),2)
+    if(curve != 0):
+        top_left_point = (x,y)
+        top_right_point = (x+w,y)
+        bottom_left_point = (x,y+h)
+        bottom_right_point = (x+w,y+h)
+        corners = np.float32([top_left_point, top_right_point, bottom_left_point, bottom_right_point])
+        result = transform(image,corners,50,50)
+    else:
+        result = image
+    return result
+
 def get_numbers(image, squares):
     x = [[int(a[0][0]),int(a[1][0])] for a in squares]
     y = [[int(b[0][1]),int(b[1][1])] for b in squares]
     # cv2.imshow('originalT', originalT[0:50,0:50])
-
+    cont =0
+    allBoxes = []
     for row,col in zip(x,y):
-        cv2.imshow("indiv",image[row[0]:row[1],col[0]:col[1]])
+        cont +=1
+        mySquare = image[row[0]:row[1],col[0]:col[1]]
+        number = zoom_number(mySquare,cont)
+        cv2.imshow('Contours', number)
+        allBoxes.append(number)
         cv2.waitKey(0)
+    return allBoxes
 
 def recognize():
     pass
 
-original = cv2.imread('Image1.jpg')
+original = cv2.imread('Image2.jpg')
 filtered = apply_filters(original)
 big_square = find_big_square(filtered)
 corners = find_corners(big_square)
@@ -159,26 +246,11 @@ cv2.waitKey(0)
 cv2.imshow('originalT', originalT)
 cv2.waitKey(0)
 cv2.imshow('subcuadros', originalS)
-get_numbers(originalT, squares)
+box_array = get_numbers(originalT, squares)
 cv2.waitKey(0)
 # get_numbers(originalT, squares) 
 cv2.destroyAllWindows() #Close all windows
-# cv2.imwrite('houghlines5.jpg',gray)
-
-#for canny and hough
-# edges = cv2.Canny(filteredT,50,150, apertureSize = 3) # experimentar con canny
-
-# minLineLength = 100
-# maxLineGap = 10
-# linesP = cv2.HoughLinesP(filteredT,1,np.pi/180,50, None,minLineLength,maxLineGap)
-
-
-# if linesP is not None:
-    # for i in range(0, len(linesP)):
-        # l = linesP[i][0]
-       # cv2.line(originalT, (l[0], l[1]), (l[2], l[3]), (0,0,255), 3, cv2.LINE_AA)
- 
-
-# plt.imshow(transformed)
-# plt.show()
-
+# cv2.imwrite('filtro.jpg',filtered)
+# cv2.imwrite('esquinas.jpg',corners_image)
+# cv2.imwrite('transformada.jpg',originalT)
+# cv2.imwrite('squares.jpg',originalS)
