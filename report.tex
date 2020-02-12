@@ -191,7 +191,7 @@ y el stride que define como va a ser recorrido, en este caso, las dimensiones fu
   \centering
   \includegraphics[scale=.80]{flatten}
 \end{figure}
-\paragraph{Capa completamente conectada (Dense)} Este tipo de capa es tal cual la de una red neuronal b\'asica. En la arquitectura de la red neuronal propuesta se encuentran dos capas de este tipo: Una con 512 neuronas y funci\'on de activaci\'on ReLU y la otra con 10 salidas y funci\'on de activaci\'on softmax.
+\paragraph{Capa completamente conectada (Dense)} Este tipo de capa es tal cual la de una red neuronal b\'asica. En la arquitectura de la red neuronal propuesta se encuentran dos capas de este tipo: Una con 1024 neuronas y funci\'on de activaci\'on ReLU y la otra con 10 salidas y funci\'on de activaci\'on softmax.
 \begin{figure}[H]
   \caption{Funci\'on Softmax}
   \centering 
@@ -199,7 +199,7 @@ y el stride que define como va a ser recorrido, en este caso, las dimensiones fu
 \end{figure}
 
 Los pesos ser\'an optimizados usando el algoritmo ADAM el cual es un m\'etodo para optimizaci\'on estoc\'astica. La funci\'on de perdida de entrop\'ia cruzada (categorical cross entropy) y las m\'etrica ser\'a accuracy (o taza de acierto).
-El entrenamiento fue por medio de lotes , es decir, se actualizaban los par\'ametros internos del modelo cada 83 lotes. La red neuronal fue entrenada por 10 \'epocas.
+El entrenamiento fue por medio de lotes, es decir, se actualizaban los par\'ametros internos del modelo cada 83 muestras. La red neuronal fue entrenada por 10 \'epocas.
 
 La red neuronal fue construida usando la libreria Keras la cual trabaja sobre Tensorflow y una vez obtenido el modelo, se puso a disposici\'on por medio de una API REST programada en el lenguaje python bajo el framework Falcon.
 \subsubsection{Backtracking}

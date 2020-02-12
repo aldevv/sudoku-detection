@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex report"] 1581471690 "report.aux" "report.bbl" "report" 1581471690
+["bibtex report"] 1581476824 "report.aux" "report.bbl" "report" 1581476825
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/ieeetr.bst" 1292289607 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "report.aux" 1581471230 3152 d3da79807fde4d1143c02cad41a93b96 ""
+  "report.aux" 1581476824 3152 d3da79807fde4d1143c02cad41a93b96 ""
   "report.bcf" 0 -1 0 ""
   "uni.bib" 0 -1 0 ""
   (generated)
   "report.bbl"
   "report.blg"
-["pdflatex"] 1581471230 "report.tex" "/home/ar4z/Projects/sudoku-detection/report.pdf" "report" 1581471690
+["pdflatex"] 1581476824 "report.tex" "/home/ar4z/Projects/sudoku-detection/report.pdf" "report" 1581476825
   "./Images/a.png" 1581376543 122523 9795aa1786b891ca1899134bcfe198d5 ""
   "./Images/convolution.png" 1581458217 63699 27edc1a7d314bedc6df2c815182593da ""
   "./Images/dtimgexample.png" 1581344544 354 16325246de3edd21925d85c737739b9d ""
@@ -22,7 +22,7 @@
   "./Images/squares.jpg" 1581376543 68286 e37a051009c5bebc363a84e823e019f9 ""
   "./Images/transformada.jpg" 1581376543 52635 3df3afd0016c6058b668642ac043b300 ""
   "/etc/texmf/web2c/texmf.cnf" 1581452740 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/ar4z/Projects/sudoku-detection/report.aux" 1581471230 3152 d3da79807fde4d1143c02cad41a93b96 ""
+  "/home/ar4z/Projects/sudoku-detection/report.aux" 1581476824 3152 d3da79807fde4d1143c02cad41a93b96 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -98,12 +98,12 @@
   "Images/softmax.jpg" 1581467256 40945 b107b4ac0a41c4b0f1c4601fb5070747 ""
   "Images/squares.jpg" 1581376543 68286 e37a051009c5bebc363a84e823e019f9 ""
   "Images/transformada.jpg" 1581376543 52635 3df3afd0016c6058b668642ac043b300 ""
-  "report.aux" 1581471230 3152 d3da79807fde4d1143c02cad41a93b96 ""
+  "report.aux" 1581476824 3152 d3da79807fde4d1143c02cad41a93b96 ""
   "report.bbl" 0 -1 0 "bibtex report"
-  "report.tex" 1581471690 10991 b8e10259e4eba847437c41290efdc274 ""
+  "report.tex" 1581476823 10994 7294bdab4b03c8bd8386faf6cda02549 ""
   (generated)
-  "report.aux"
-  "report.pdf"
   "/home/ar4z/Projects/sudoku-detection/report.log"
+  "report.aux"
   "report.log"
   "/home/ar4z/Projects/sudoku-detection/report.pdf"
+  "report.pdf"
