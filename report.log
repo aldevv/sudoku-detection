@@ -1,0 +1,357 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2020.2.11)  11 FEB 2020 20:33
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**report.tex
+(/home/ar4z/Projects/sudoku-detection/report.tex
+LaTeX2e <2017/01/01> patch level 3
+Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
+\ttl@box=\box26
+\beforetitleunit=\skip43
+\aftertitleunit=\skip44
+\ttl@plus=\dimen103
+\ttl@minus=\dimen104
+\ttl@toksa=\toks14
+\titlewidth=\dimen105
+\titlewidthlast=\dimen106
+\titlewidthfirst=\dimen107
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2016/10/09 v1.0u Standard LaTeX Graphics (DPC,SPQR)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen108
+\Gin@req@width=\dimen109
+) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count88
+\lst@gtempboxa=\box27
+\lst@token=\toks16
+\lst@length=\count89
+\lst@currlwidth=\dimen110
+\lst@column=\count90
+\lst@pos=\count91
+\lst@lostspace=\dimen111
+\lst@width=\dimen112
+\lst@newlines=\count92
+\lst@lineno=\count93
+\lst@maxwidth=\dimen113
+ (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count94
+\lst@skipnumbers=\count95
+\lst@framebox=\box28
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+ (/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen114
+\WF@size=\dimen115
+\c@WF@wrappedlines=\count96
+\WF@box=\box29
+\WF@everypar=\toks17
+Package: wrapfig 2003/01/31  v 3.6
+) (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen116
+\captionmargin@=\dimen117
+\captionwidth=\dimen118
+\caption@tempdima=\dimen119
+\caption@indent=\dimen120
+\caption@parindent=\dimen121
+\caption@hangindent=\dimen122
+)
+\c@ContinuedFloat=\count97
+Package caption Info: listings package is loaded.
+Package caption Info: wrapfig package is loaded.
+)
+\c@subfigure=\count98
+\c@subtable=\count99
+) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count100
+\float@exts=\toks18
+\float@box=\box30
+\@float@everytoks=\toks19
+\@floatcapt=\box31
+) (/home/ar4z/Projects/sudoku-detection/report.aux)
+\openout1 = `report.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count101
+\scratchdimen=\dimen123
+\scratchbox=\box32
+\nofMPsegments=\count102
+\nofMParguments=\count103
+\everyMPshowfont=\toks20
+\MPscratchCnt=\count104
+\MPscratchDim=\dimen124
+\MPnumerator=\count105
+\makeMPintoPDFobject=\count106
+\everyMPtoPDFconversion=\toks21
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+ (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+)) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 438.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+ (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+\c@lstlisting=\count107
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 40.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 40.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 40.
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no º in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ³ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no © in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ³ in font cmr10!
+Missing character: There is no Ã in font cmbx12!
+Missing character: There is no ³ in font cmbx12!
+Missing character: There is no Ã in font cmbx12!
+Missing character: There is no © in font cmbx12!
+ [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no º in font cmr10!
+
+
+LaTeX Warning: Citation `test' on page 2 undefined on input line 73.
+
+<./Images/a.png, id=9, 1257.69875pt x 1649.16125pt>
+File: ./Images/a.png Graphic file (type png)
+ <use ./Images/a.png>
+Package pdftex.def Info: ./Images/a.png used on input line 78.
+(pdftex.def)             Requested size: 188.64667pt x 247.36351pt.
+ <./Images/filtro.jpg, id=10, 420.57124pt x 424.58624pt>
+File: ./Images/filtro.jpg Graphic file (type jpg)
+ <use ./Images/filtro.jpg>
+Package pdftex.def Info: ./Images/filtro.jpg used on input line 81.
+(pdftex.def)             Requested size: 137.9979pt x 139.31702pt.
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ­ in font cmr10!
+
+
+LaTeX Warning: Citation `ramer' on page 2 undefined on input line 89.
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+) [2 <./Images/a.png> <./Images/filtro.jpg>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 96.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 96.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 98.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <8> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 98.
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ³ in font cmr10!
+ <./Images/esquinas.jpg, id=15, 420.57124pt x 424.58624pt>
+File: ./Images/esquinas.jpg Graphic file (type jpg)
+ <use ./Images/esquinas.jpg>
+Package pdftex.def Info: ./Images/esquinas.jpg used on input line 112.
+(pdftex.def)             Requested size: 103.50105pt x 104.48776pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 115.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 115.
+ <./Images/transformada.jpg, id=16, 451.6875pt x 451.6875pt>
+File: ./Images/transformada.jpg Graphic file (type jpg)
+ <use ./Images/transformada.jpg>
+Package pdftex.def Info: ./Images/transformada.jpg used on input line 118.
+(pdftex.def)             Requested size: 103.50105pt x 103.49997pt.
+ <./Images/squares.jpg, id=17, 451.6875pt x 451.6875pt>
+File: ./Images/squares.jpg Graphic file (type jpg)
+ <use ./Images/squares.jpg>
+Package pdftex.def Info: ./Images/squares.jpg used on input line 133.
+(pdftex.def)             Requested size: 276.00105pt x 276.01831pt.
+ [3 <./Images/esquinas.jpg> <./Images/transformada.jpg>] <./Images/convolution.png, id=26, 697.60625pt x 226.8475pt>
+File: ./Images/convolution.png Graphic file (type png)
+ <use ./Images/convolution.png>
+Package pdftex.def Info: ./Images/convolution.png used on input line 148.
+(pdftex.def)             Requested size: 348.80226pt x 113.42346pt.
+
+Overfull \hbox (3.80226pt too wide) in paragraph at lines 148--149
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--149
+\OT1/cmr/m/n/10 Neu-ronal Con-volu-cional uti-lizando el dataset Chars74k. 
+ []
+
+[4 <./Images/squares.jpg>] <./Images/dtimgexample.png, id=31, 28.105pt x 28.105pt>
+File: ./Images/dtimgexample.png Graphic file (type png)
+ <use ./Images/dtimgexample.png>
+Package pdftex.def Info: ./Images/dtimgexample.png used on input line 155.
+(pdftex.def)             Requested size: 28.10492pt x 28.10492pt.
+ <./Images/model_plot.png, id=32, 469.755pt x 1295.84125pt>
+File: ./Images/model_plot.png Graphic file (type png)
+ <use ./Images/model_plot.png>
+Package pdftex.def Info: ./Images/model_plot.png used on input line 162.
+(pdftex.def)             Requested size: 187.89867pt x 518.32732pt.
+ [5 <./Images/convolution.png> <./Images/dtimgexample.png (PNG copy)>] [6 <./Images/model_plot.png>] <./Images/feature_map.png, id=41, 1021.8175pt x 622.325pt>
+File: ./Images/feature_map.png Graphic file (type png)
+ <use ./Images/feature_map.png>
+Package pdftex.def Info: ./Images/feature_map.png used on input line 169.
+(pdftex.def)             Requested size: 204.35988pt x 124.46278pt.
+ <./Images/relu.png, id=42, 348.30125pt x 331.2375pt>
+File: ./Images/relu.png Graphic file (type png)
+ <use ./Images/relu.png>
+Package pdftex.def Info: ./Images/relu.png used on input line 176.
+(pdftex.def)             Requested size: 139.31802pt x 132.49265pt.
+ <./Images/pooling.jpg, id=43, 357.58594pt x 174.6525pt>
+File: ./Images/pooling.jpg Graphic file (type jpg)
+ <use ./Images/pooling.jpg>
+Package pdftex.def Info: ./Images/pooling.jpg used on input line 186.
+(pdftex.def)             Requested size: 286.06912pt x 139.72218pt.
+ [7 <./Images/feature_map.png (PNG copy)> <./Images/relu.png>] <./Images/flatten.png, id=49, 417.2388pt x 199.4652pt>
+File: ./Images/flatten.png Graphic file (type png)
+ <use ./Images/flatten.png>
+Package pdftex.def Info: ./Images/flatten.png used on input line 192.
+(pdftex.def)             Requested size: 333.79149pt x 159.57237pt.
+ <./Images/softmax.jpg, id=50, 1284.8pt x 722.7pt>
+File: ./Images/softmax.jpg Graphic file (type jpg)
+ <use ./Images/softmax.jpg>
+Package pdftex.def Info: ./Images/softmax.jpg used on input line 198.
+(pdftex.def)             Requested size: 385.44298pt x 216.81166pt.
+
+Overfull \hbox (40.44298pt too wide) in paragraph at lines 198--199
+ [][] 
+ []
+
+[8 <./Images/pooling.jpg> <./Images/flatten.png>]
+No file report.bbl.
+[9 <./Images/softmax.jpg>] (/home/ar4z/Projects/sudoku-detection/report.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 4962 strings out of 493013
+ 74114 string characters out of 6135682
+ 203165 words of memory out of 5000000
+ 8447 multiletter control sequences out of 15000+600000
+ 8501 words of font info for 30 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 42i,8n,49p,378b,1393s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on /home/ar4z/Projects/sudoku-detection/report.pdf (9 pages, 776368 bytes).
+PDF statistics:
+ 88 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -157,57 +157,26 @@ Las 10160 im\'agenes para entrenar a la red fueron tomadas del dataset Chars74K.
 
 En 1 se puede observar la arquitectura de la red neuronal propuesta para solucionar el problema.
 \begin{figure}[H]
-  \caption{Arquitectura de la red neuronal construida}
+  \caption{Imagen del dataset Chars74K}
   \centering
   \includegraphics[scale=.40]{model_plot}
 \end{figure}
-La red neuronal esta compuesta de diferentes capas cada una con un objetivo espec\'ifico.
-\paragraph{Capa convolucional} La red construida se compone de dos de \'estas capas, las cuales por medio de filtros se encargan de recorrer las im\'agenes en busca de caracter\'isticas generando un Feature Map.
-\begin{figure}[H]
-  \caption{Feature map}
-  \centering
-  \includegraphics[scale=.20]{feature_map}
-\end{figure}
-\paragraph{Capa de normalizaci\'on} Para esta capa se usa espec\'ificamente la implementaci\'on de BatchNormalization. Esta capa mantiene los valores que pasan por medio de la red.
-\paragraph{Capa de activaci\'on} La red posee dos capas de este tipo cada una con la funci\'on ReLU.
-\begin{figure}[H]
-  \caption{Funci\'on ReLU}
-  \centering
-  \includegraphics[scale=.40]{relu}
-\end{figure}
-\paragraph{Capa de pooling} 
-Este tipo de capa se encarga de resumir las catarecter\'isticas
-obtenidos en los Feature Map generados en la convoluci\'on. 
-La configuraci\'on de las capas de pooling recibe como par\'ametros la dimensi\'on de los filtros 
-y el stride que define como va a ser recorrido, en este caso, las dimensiones fueron 2x2 y el paso o zancada fue de 1. 
-\begin{figure}[H]
-  \caption{Comportamiento capa de pooling}
-  \centering
-  \includegraphics[scale=.80]{pooling}
-\end{figure}
-\paragraph{Capa de aplanamiento} La capa Flatten se encarga de coger cada una de las matrices y convertirlas en vectores por esto es conocida como capa de aplanamiento.
-\begin{figure}[H]
-  \caption{Comportamiento capa de aplanamiento}
-  \centering
-  \includegraphics[scale=.80]{flatten}
-\end{figure}
-\paragraph{Capa completamente conectada (Dense)} Este tipo de capa es tal cual la de una red neuronal b\'asica. En la arquitectura de la red neuronal propuesta se encuentran dos capas de este tipo: Una con 512 neuronas y funci\'on de activaci\'on ReLU y la otra con 10 salidas y funci\'on de activaci\'on softmax.
-\begin{figure}[H]
-  \caption{Funci\'on Softmax}
-  \centering 
-  \includegraphics[scale=.30]{softmax}
-\end{figure}
-
-Los pesos ser\'an optimizados usando el algoritmo ADAM el cual es un m\'etodo para optimizaci\'on estoc\'astica. La funci\'on de perdida de entrop\'ia cruzada (categorical cross entropy) y las m\'etrica ser\'a accuracy (o taza de acierto).
-El entrenamiento fue por medio de lotes , es decir, se actualizaban los par\'ametros internos del modelo cada 83 lotes. La red neuronal fue entrenada por 10 \'epocas.
-
-La red neuronal fue construida usando la libreria Keras la cual trabaja sobre Tensorflow y una vez obtenido el modelo, se puso a disposici\'on por medio de una API REST programada en el lenguaje python bajo el framework Falcon.
+A continuaci\'on, una breve descripci\'on de cada una de las capas:
+\begin{itemize}
+  \item Una capa convolucional la cual se compone de 32 filtros de taman\~o 5x5 que recorren la imagen con paso de 1
+  \item una capa de normalizaci\'on que se encarga de mantener los valoresen el rango...
+  \item Una capa que se encarga de ejecutar la funci\'on de activaci\'on reLU la cual se define como se muestra en (1)
+  \item Una capa de pooling que se encarga de tomar cada una de las entradas de la capa anterior y reducir su tama\~no
+  \item Una capa convolucional la cual se compone de 64 filtros de tama\~no 5x5, estos recorren a cada imagen con paso de 1
+  \item De nuevo, una capa de normalizaci\'on
+  \item Una capa de que se encarga de ejecutar la funci\'on de activaci\'on reLU
+  \item Una capa de pooling con el mismo bjetivo que en el item...
+  \item Una capa de aplanamiento
+  \item Una capa de una red neuronal simple con 512 neuronas y funci\'on de activaci\'on relu
+  \item Una salida con 10 neuronas con funci\'on de activaci\'on softmax definida en (2) que se encarga de devolver la probabilidad de que la imagen tomada como entrada sea de un digito del 0 al 9
+\end{itemize}
 \subsubsection{Backtracking}
-Una vez identificados los n\'umeros en el tablero para hallar una soluci\'on al sudoku se uso Backtracking el cual es una t\'ecnica de programaci\'on para hacer una b\'usqueda a trav\'es de todas las configuraciones posibles dentro de un espacio de b\'usqueda.
-El algoritmo fue programado en el lenguaje de programaci\'on Dart.
 \section{Resultados}
-Finalmente, se logra la construcci\'on de una aplicaci\'on m\'ovil la cual puede reconocer la disposici\'on de n\'umeros en el tablero del sudoku.
-Como trabajo a futuro se podr\'ia mejorar  si se reconocen las celdas donde no hay un d\'igito, ya que, actualmente, esta identificaci\'on se debe hacer de forma manual.
 \bibliographystyle{ieeetr}
 \bibliography{uni}
     
